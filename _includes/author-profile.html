@@ -7,12 +7,13 @@
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="author__avatar">
-    {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}"  fetchpriority="high" />
+    {% if site.author.avatar contains "://" %}
+      <img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" />
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}"  fetchpriority="high" />
+      <img src="{{ site.baseurl }}/images/{{ site.author.avatar }}" alt="{{ site.author.name }}" />
     {% endif %}
   </div>
+
 
   <div class="author__content">
     <h3 class="author__name">{{ author.name }}</h3>
@@ -37,6 +38,10 @@
         <li><a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</a></li>
       {% endif %}
 
+      <!-- Me adding resume link-->
+      {% if site.author.resumelink %}
+      <li> <a href="{{ site.author.resumelink }}"> <i class="fas fa-fw fa-file-pdf icon-pad-right"></i> Resume </a> </li> 
+      {% endif %}
       <!-- Font Awesome and Academicons icons / Academic websites -->
       {% if author.academia %}
         <li><a href="{{ author.academia }}"><i class="ai ai-academia ai-fw icon-pad-right" aria-hidden="true"></i>Academia</a></li>
